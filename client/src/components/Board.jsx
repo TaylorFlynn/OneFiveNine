@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { ServerMessage } from '.';
-import Cell from './Cell'
+// import Cell from './Cell'
 
 const Board = ({
     IsAdvanced,
