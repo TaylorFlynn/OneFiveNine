@@ -3,7 +3,7 @@ import { Board, Menu, NavBar} from './components';
 import Cookies from 'universal-cookie';
 import './App.css'
 const cookies = new Cookies();
-const WS = new WebSocket("ws://one-five-nine.herokuapp.com");
+const WS = new WebSocket("wss://one-five-nine.herokuapp.com");
 
 const App = () => {
     const [IsCreate, setIsCreate] = useState(true);
