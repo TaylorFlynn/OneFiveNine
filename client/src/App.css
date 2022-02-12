@@ -19,7 +19,7 @@ body {
 }
 
 :root {
-  --primary-color: #005fff;
+  --primary-color: #244c88;
   --test-color: #13607c;
   --primary-color-alpha: #005fff1a;
   --small-axis: min(calc(100vw - 320px), 100vh);
@@ -67,7 +67,7 @@ body {
 .app__wrapper {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.459), rgb(0, 162, 255)),
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.068), var(--primary-color)),
     var(--primary-color);
   display: flex;
   flex-direction: row;
