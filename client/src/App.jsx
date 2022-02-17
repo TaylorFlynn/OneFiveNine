@@ -65,7 +65,7 @@ const App = () => {
                     break;
                 case 'play':
                     setActiveGroup(response.game.ActiveGroup)
-                    setLastMark(response.game.lastMark)
+                    setLastMark(response.lastMark)
                     setGameState(response.game.state);
                     break;
                 case 'restart':
