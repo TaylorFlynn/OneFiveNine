@@ -23,6 +23,7 @@ const App = () => {
     const [ServerMsg, setServerMsg] = useState("Please Try Again");
     const [ShowServerMessage, setShowServerMessage] = useState(false);
     const [MenuUpdate, setMenuUpdate] = useState(null);
+    const [LastMark, setLastMark] = useState(null);
 
     function startGame() {
         setGameState({})
@@ -64,6 +65,7 @@ const App = () => {
                     break;
                 case 'play':
                     setActiveGroup(response.game.ActiveGroup)
+                    setLastMark(response.game.lastMark)
                     setGameState(response.game.state);
                     break;
                 case 'restart':
@@ -139,6 +141,8 @@ const App = () => {
                 setShowServerMessage={setShowServerMessage} 
                 ServerMsg={ServerMsg}
                 MenuUpdate={MenuUpdate}
+                LastMark={LastMark}
+                setLastMark={setLastMark}
             />
         </div>
     )

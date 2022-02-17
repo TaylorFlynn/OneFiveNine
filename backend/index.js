@@ -200,6 +200,7 @@ wsServer.on("request", request => {
                     const payLoad = {
                         "method": "play",
                         "game": game,
+                        "lastMark": cellId
                     }
 
                     game.clients.forEach(c =>{

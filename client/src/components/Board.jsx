@@ -21,7 +21,9 @@ const Board = ({
     ShowServerMessage,
     setShowServerMessage,
     ServerMsg,
-    MenuUpdate
+    MenuUpdate,
+    LastMark,
+    setLastMark
 }) => {
     // function TestBoard() {
     //     Boards.current = []
@@ -55,7 +57,7 @@ const Board = ({
             const cells = []
             for (let j = 0; j < 9; j++) {
                 const cell = <div 
-                        className={`cell ${k} ${ActiveGroup.includes(i) ? 'active':'inactive' } ${IsAdvanced ? '': 'node'} ${GameState[`cell ${k}`] || ''} ${Object.keys(GameState).at(-1) === `cell ${k}` && 'last'}`} 
+                        className={`cell ${k} ${ActiveGroup.includes(i) ? 'active':'inactive' } ${IsAdvanced ? '': 'node'} ${GameState[`cell ${k}`] || ''} ${LastMark === `cell ${k}` && 'last'}`} 
                         id={k} 
                         key={'cell '+k}
                         data_tag={i}
@@ -118,16 +120,14 @@ const Board = ({
 
     useEffect (() => {
         try{
-        setturnCount(prevturnCount => prevturnCount += 1);
-        if(turnCount >= PlayerCount-1) setturnCount(prevturnCount => prevturnCount = 0);
+            setturnCount(prevturnCount => prevturnCount += 1);
+            if(turnCount >= PlayerCount-1) setturnCount(prevturnCount => prevturnCount = 0);
             if(checkWin() || isDraw() || isStalemate()) setGameActive(false);
             if(isStalemate()) EndGameMessage.current = ('Stalemate');
             if(isDraw()) EndGameMessage.current = ('Draw');
             if(checkWin()) EndGameMessage.current = (`${markTypes[turnCount]}'s Win!`);
-
-        }
-        catch(err){console.log(err)}
-
+            console.log(LastMark)
+        } catch(err){}
     }, [GameState]);
 
     useEffect (() => {
@@ -172,6 +172,7 @@ const Board = ({
             sendPlayRequest(e.target.id, type);
             return;
         } else {
+            setLastMark('cell '+cellId)
             setGameState({...GameState, ['cell '+cellId]: markTypes[turnCount]})
             IsAdvanced && setActiveGroup([type])
             !IsAdvanced && setActiveGroup([0])
